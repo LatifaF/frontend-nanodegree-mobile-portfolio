@@ -3,6 +3,7 @@
 
 
 To run the site, got to https://latifaf.github.io/frontend-nanodegree-mobile-portfolio/
+or if you want to run it localy just open the index.html with your browser
 
 To view Cam's Pizzeria, click the link for it in the list at the first page.
 Changes made to optimize the site:

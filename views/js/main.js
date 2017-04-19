@@ -502,9 +502,9 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var phase = Math.sin(document.body.scrollTop / 1250); // remove this line from the loop .. there is no need each time to calculate this
+  var cachedScrollTop = document.body.scrollTop ; // remove this line from the loop .. there is no need each time to calculate this
   for (var i = 0; i < items.length; i++) {
-    items[i].style.left = items[i].basicLeft + 100 * phase + (i % 5)+ 'px';
+    items[i].style.left = items[i].basicLeft + 100 * Math.sin((cachedScrollTop/ 1250) + (i % 5))+ 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -534,7 +534,7 @@ window.addEventListener('scroll', onScroll, false);//, updatePositions);
 document.addEventListener('DOMContentLoaded', window.requestAnimationFrame(function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 50; i++) { // edit the times t=go throw the loop since it is not that diffrent
+  for (var i = 0; i < 48; i++) { // edit the times t=go throw the loop since it is not that diffrent
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";

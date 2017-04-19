@@ -406,6 +406,7 @@ var resizePizzas = function(size) {
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
+      // try to you getElementById and getElementByClass whr=en it is possible to go throw less selectors in the search for the one needed
         document.getElementById("pizzaSize").innerHTML = "Small";
         return;
       case "2":
@@ -441,7 +442,7 @@ var resizePizzas = function(size) {
         default:
           console.log("bug in sizeSwitcher");
       }
-
+      // remove the calling in this function no need for it .and delet the function, and make the line inside the loop small as possible
     var randomPiz =document.getElementsByClassName("randomPizzaContainer");
     for (var i = 0; i < randomPiz.length; i++) {
       randomPiz[i].style.width = newWidth + '%';
@@ -501,7 +502,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var phase = Math.sin(document.body.scrollTop / 1250);
+  var phase = Math.sin(document.body.scrollTop / 1250); // remove this line from the loop .. there is no need each time to calculate this
   for (var i = 0; i < items.length; i++) {
     items[i].style.left = items[i].basicLeft + 100 * phase + (i % 5)+ 'px';
   }
@@ -515,6 +516,7 @@ function updatePositions() {
     logAverageFrame(timesToUpdatePosition);
   }
   ticking = false;
+
 }
 
 function onScroll (evt) {
@@ -526,13 +528,13 @@ function onScroll (evt) {
   }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', onScroll, updatePositions);
+window.addEventListener('scroll', onScroll, false);//, updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', window.requestAnimationFrame(function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 50; i++) { // edit the times t=go throw the loop since it is not that diffrent
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -543,4 +545,5 @@ document.addEventListener('DOMContentLoaded', window.requestAnimationFrame(funct
     document.getElementById("movingPizzas1").appendChild(elem);
   }
    window.requestAnimationFrame(updatePositions);
+   // add requestAnimationFrame since in the course it is better to add this in any event that change the viewing in the page
 }));
